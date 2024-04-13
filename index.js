@@ -40,7 +40,7 @@ app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
 
         // Send a success response
         // res.status(200).json({ message: 'linkOpenCount incremented successfully', user });
-        res.render('Signin.ejs', {data: userId});
+        res.render('Login.ejs', {data: userId});
     } catch (error) {
         // If an error occurs, send an error response
         console.error(error);
