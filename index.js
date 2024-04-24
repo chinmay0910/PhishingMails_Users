@@ -1,10 +1,11 @@
 const connectToMongo = require('./db')
 const express = require('express')
 const bodyParser = require('body-parser');
-const User = require('./models/User');
+// const User = require('./models/User');
+const campaign2users = require('./models/campaign2');
 // const sendMail = require('./utils/sendMail');
 const path = require('path')
-
+const { createUser } = require("./controllers/signnin");
 
 connectToMongo();
 const app = express()
@@ -19,6 +20,43 @@ app.set('views', path.join(__dirname, 'views'))
 
 const port = 5000
 
+app.get('/', (req, res) => {
+    res.render("campaign2/index1.ejs")
+})
+
+app.post('/createuser', async (req, res) => {
+    try {
+        // Extract data from the request body
+        const emailId = req.body.emailId;
+
+        // Check if a user with the same emailId already exists
+        const existingUser = await campaign2users.findOne({ emailId });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists with this email' });
+        }
+
+        // Create a new user object
+        const newUser = new campaign2users({
+            emailId,
+            linkOpenCount: 0,
+            emailOpenCount: 0,
+            attachmentOpenCount: 0,
+            submittedData: 0,
+            reportedSpam: false
+        });
+
+        // Save the new user to the database
+        await newUser.save();
+
+        // Send a success response
+        res.status(201).json({ message: 'User created successfully', user: newUser });
+    } catch (error) {
+        // If an error occurs, send an error response
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Defined API endpoint to increment linkOpenCount
 app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
     try {
@@ -26,7 +64,7 @@ app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
         const userId = req.params.userId;
 
         // Find the user by userId
-        const user = await User.findById(userId);
+        const user = await campaign2users.findById(userId);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -40,7 +78,7 @@ app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
 
         // Send a success response
         // res.status(200).json({ message: 'linkOpenCount incremented successfully', user });
-        res.render('Login.ejs', {data: userId});
+        res.render('campaign2/index1.ejs', {data: userId});
     } catch (error) {
         // If an error occurs, send an error response
         console.error(error);
@@ -55,7 +93,7 @@ app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
         const userId = req.params.userId;
 
         // Find the user by userId
-        const user = await User.findById(userId);
+        const user = await campaign2users.findById(userId);
 
         if (user) {
             user.attachmentOpenCount += 1;
@@ -74,11 +112,11 @@ app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
 // Defined route to handle form submission
 app.post('/login', async (req, res) => {
     try {
-      const { username, password, userId } = req.body;
+      const { username, password, category, userId } = req.body;
   
       // Update the submittedData field for the user with the provided userId
-      await User.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
-      await User.findByIdAndUpdate(userId, { $push: { submittedContent: { username, password } } });
+      await campaign2users.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
+      await campaign2users.findByIdAndUpdate(userId, { $push: { submittedContent: { username, password, category } } });
   
       // You can add additional logic here for authentication, etc.
   
@@ -95,7 +133,7 @@ app.get('/track.gif', async (req, res) => {
         const { userId } = req.query;
 
         // Update the user's emailOpenCount in the database
-        const user = await User.findById(userId);
+        const user = await campaign2users.findById(userId);
         if (user) {
             user.emailOpenCount += 1;
             await user.save();

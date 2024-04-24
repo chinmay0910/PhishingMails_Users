@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SERVICE VOTER PORTAL</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <meta charset="utf-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet">
+  <link rel="icon" href="/campaign2/logo/logo.svg" type="image/x-icon">
+</head>
+
+<body>
+  <div id="root">
+    <div class="App">
+      <div class="navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-dark" style="height: 78px; z-index: 123;">
+          <div class="container mr-4"><a aria-current="page" class="navbar-brand active" href="/"
+              style="cursor: default;"><img class="nav_logo" src="/campaign2/logo/logo.svg" alt="logo"
+                style="width: 60px; height: 60px; margin-top: 8px; margin-right: 12px;">Service Voter
+              Portal</a>
+            <div>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-4 pr-2" style="margin-top: 2px;"></li>
+                <li class="nav-item"></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="container-fluid" id="loginId">
+        <div class="row layout">
+          <div class="col-sm-7 login-content-box-wrapper">
+            <div class="login-content-box">
+              <div class="login-content-section">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="login-content-logo-section"><img class="login-content-logo" src="/campaign2/logo/logo.svg"
+                        alt="logo">
+                      <div class="login-content-title">
+                        <h4 class="login-content-htitle">भारत निर्वाचन आयोग</h4>
+                        <h4 class="login-content-etitle">Election Commission of India</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-5 mainpageLeftside">
+                <div class="col-md-6">
+                  <center><img src="/campaign2/logo/form.svg" style="width: 40px; height: 40px;">
+                    <h6 class="mt-3">Know Your Form</h6>
+                    <div class="row mb-2 dropdownSelectField">
+                      <div class="col-md-4"><label for="formType" class="select-label"></label></div>
+                      <div class="addingWidth mb-3">
+                        <div class="library-select"><select class="form-select" name="formType" id="formType">
+                            <option value="">Select your form</option>
+                            <option value="0">For Armed Forces (Form 2)- English</option>
+                            <option value="1">For Armed Forces (Form 2)- Hindi</option>
+                            <option value="2">For State Armed Police Forces (Form 2A)- English</option>
+                            <option value="3">For State Armed Police Forces (Form 2A)- Hindi</option>
+                            <option value="4">For Govt Officials serving abroad (Form 3) - English</option>
+                            <option value="5">For Govt Officials serving abroad (Form 3) - Hindi</option>
+                          </select></div>
+                      </div>
+                    </div>
+                  </center>
+                </div>
+                <div class="col-md-6"><a href="https://ecisveep.nic.in/voters/service-voters/" target="_blank">
+                    <center><img src="/campaign2/logo/chat.svg" style="width: 40px; height: 40px;">
+                      <h6 class=" mt-3 " style="color: white;">FAQs</h6>
+                    </center>
+                  </a></div>
+              </div>
+              <div class="footer_login">
+                <div></div>
+                <div class="version pt-3">Version: 1.0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5 form-login-wrapper">
+            <div class="form_login">
+              <form class="form_align">
+                <div class="box">
+                  <div class="row p-2">
+                    <div class="col-sm-12 heading_login">
+                      <h4>Login</h4>
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-12"><label for="officer" class="select-label">Category<b class="text-danger">
+                          *</b></label></div>
+                    <div class="col-md-12">
+                      <div class="library-select"><select class="form-select" name="officer" id="officer">
+                          <option value="">Select Officer Type</option>
+                          <option value="ArmedForces">Armed Forces</option>
+                          <option value="ParamilitaryForces">Paramilitary Forces</option>
+                          <option value="GovStaffAbroad">Gov Staff Abroad</option>
+                          <option value="ECIOfficials">ECI Officials</option>
+                        </select></div>
+                    </div>
+                  </div>
+                  <input type="text" style="display: none;" id="userId" value=<%if(data != null){%> <%=data%> <%}%> >
+                  <div class="row p-2">
+                    <div class="col-md-12"><label for="username" class="input-label">NIC Username<b class="text-danger">
+                      *</b></label></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="input-container">
+                                <input autocomplete="off" type="text" name="username" placeholder="Username" id="username" class="library-input form-control undefined" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- <div class="row p-2">
+                    <div class="col-md-12"><label for="username" class="input-label">Username<b class="text-danger">
+                          *</b></label></div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="input-container"><input autocomplete="off" type="text" name="username"
+                            placeholder="Username" id="username" class="library-input form-control undefined"
+                            value=""></div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="row p-2">
+                    <div class="col-md-12"><label for="password" class="input-label">Password<b class="text-danger">
+                          *</b></label></div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="input-container"><input autocomplete="off" type="password" name="password"
+                            placeholder="Password" id="password" class="library-input form-control undefined"
+                            value=""></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row px-2"></div>
+                  <div class="row p-2">
+                    <div class="col-md-12 captchatext">
+                      <div class="form-group">
+                        <div class="row ml-1">
+                          <div class="col-md-auto mr-0 p-0">
+                            <img id="captchaImag" class="border rounded" alt="Captcha Image" src="https://exemptedfastag.nhai.org/Exemptedfastag/captcha.aspx" alt="">
+                          </div>
+                          <!-- <img id="captchaImage" src="" alt="Captcha Image" style="border: 1px solid rgb(137, 137, 129);"> -->
+                          <div class="col-md-3 mt-4 pl-0" onClick="window.location.reload();">
+                            <img src="/campaign2/logo/refresh.svg" alt="" class="ml-2"
+                              style="cursor: pointer; height: 18px;">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12"><label>Captcha <span style="color: red;">*</span></label></div>
+                        </div>
+                        <div class="row w-50">
+                          <div class="">
+                            <div class="form-group">
+                              <div class="input-container">
+                                <input autocomplete="off" type="text" name="captcha"
+                                  placeholder="" maxlength="6" minlength="0"
+                                  class="library-input form-control undefined" id="captchaInput" value="">
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary library-btn btn-block submit" id="submitBtn"
+                    type="submit">&nbsp;Register</button>
+                  <hr>
+                  <div class="signup">Not getting Password? <a class="text-primary" href="/forgotpassword">Forgot
+                      Password</a></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert_global"></div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get reference to the submit button
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Add event listener to the submit button
+    submitBtn.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form data
+      const userId = document.getElementById('userId').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const category = document.getElementById('officer').value;
+
+      console.log( username, password, userId, category);
+
+      // Send form data to backend using fetch
+      fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username,
+            userId,
+            password,
+            category
+          })
+        })
+        .then(response => {
+          if (response.ok) {
+            // Form submitted successfully
+            alert('Form submitted successfully');
+          } else {
+            // Error occurred
+            throw new Error('Failed to submit form');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Failed to submit form');
+        });
+    });
+  });
+
+  /* function generateCaptcha() {
+    var captchaText = '';
+    var possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (var i = 0; i < 6; i++) {
+      captchaText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+    }
+
+    var captchaImage = 'https://dummyimage.com/200x100/e8e8e8/000&text=' + captchaText; // Replace with your captcha image generation logic
+
+    document.getElementById('captchaImage').src = captchaImage;
+    sessionStorage.setItem('captchaText', captchaText);
+  }
+
+  function checkCaptcha() {
+    var userInput = document.getElementById('captchaInput').value;
+    var captchaText = sessionStorage.getItem('captchaText');
+
+    if (userInput === captchaText) {
+      alert('Captcha is correct!');
+    } else {
+      alert('Captcha is incorrect!');
+    }
+
+    // Generate new captcha on every check
+    generateCaptcha();
+  }
+
+  // Generate captcha when the page loads
+  window.onload = function () {
+    generateCaptcha();
+  }; */
+</script>
+
+</html>
