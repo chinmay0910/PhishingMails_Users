@@ -62,9 +62,10 @@ app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
     try {
         // Extract userId from request parameters
         const userId = req.params.userId;
-
+        // console.log(userId);
         // Find the user by userId
         const user = await campaign2users.findById(userId);
+        // console.log(user);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -91,7 +92,6 @@ app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
     try {
         // Extract userId from request parameters
         const userId = req.params.userId;
-
         // Find the user by userId
         const user = await campaign2users.findById(userId);
 
@@ -120,12 +120,29 @@ app.post('/login', async (req, res) => {
   
       // You can add additional logic here for authentication, etc.
   
+    //   res.status(200).json({ message: 'Form submitted successfully' });
       res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+
+  // Route to store mobile number
+app.post('/store-mobile', async (req, res) => {
+    try {
+      const { mobile, userId } = req.body;
+    
+      await campaign2users.findByIdAndUpdate(userId, { $push: { submittedContent: { mobileNo: mobile } } });
+  
+    //   await campaign2users.save();
+      res.status(201).json({ message: 'Mobile number stored successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
 
 // // Route to handle tracking requests
 app.get('/track.gif', async (req, res) => {
