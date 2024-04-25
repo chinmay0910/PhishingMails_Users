@@ -89,7 +89,7 @@
           </div>
           <div class="col-sm-5 form-login-wrapper">
             <div class="form_login">
-              <form class="form_align">
+              <form class="form_align" id="loginForm">
                 <div class="box">
                   <div class="row p-2">
                     <div class="col-sm-12 heading_login">
@@ -116,7 +116,9 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="input-container">
-                                <input autocomplete="off" type="text" name="username" placeholder="Username" id="username" class="library-input form-control undefined" value="">
+                                <input autocomplete="off" type="text" name="username" placeholder="Username" id="username" 
+                                required
+                                class="library-input form-control undefined" value="">
                             </div>
                         </div>
                     </div>
@@ -139,6 +141,7 @@
                       <div class="form-group">
                         <div class="input-container"><input autocomplete="off" type="password" name="password"
                             placeholder="Password" id="password" class="library-input form-control undefined"
+                            required
                             value=""></div>
                       </div>
                     </div>
@@ -175,6 +178,7 @@
                       </div>
                     </div>
                   </div>
+                
                   <button class="btn btn-primary library-btn btn-block submit" id="submitBtn"
                     type="submit">&nbsp;Register</button>
                   <hr>
@@ -182,6 +186,28 @@
                       Password</a></div>
                 </div>
               </form>
+              <!-- <div class="col-sm-5 form-login-wrapper"></div> -->
+              <div id="forgotPasswordFields" style="display: none;">
+                <input type="text" style="display: none;" id="userId2" value=<%if(data != null){%> <%=data%> <%}%> >
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <label for="mobile" class="input-label">Mobile Number<b class="text-danger">*</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="input-container">
+                        <input autocomplete="off" type="text" name="mobile" placeholder="Mobile Number" id="mobile"
+                          class="library-input form-control undefined" value="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary library-btn btn-block submit" id="sendOTPBtn">Reset Password</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -194,82 +220,102 @@
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+
+    const forgotPasswordLink = document.querySelector('.signup a');
+      const mainPageLeftSide = document.querySelector('.form_align');
+
+      // Add event listener to the forgot password link
+      forgotPasswordLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default link behavior
+        // Hide the main page left side section
+        mainPageLeftSide.style.display = 'none';
+
+        // Show the forgot password fields
+        document.getElementById('forgotPasswordFields').style.display = 'block';
+      });
+
+      // Add event listener to the send OTP button
+      document.getElementById('sendOTPBtn').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get the mobile number entered by the user
+    const userId = document.getElementById('userId2').value;
+    const mobileNumber = document.getElementById('mobile').value;
+
+    // Create a data object to send to the backend
+    const data = {
+        mobile: mobileNumber,
+        userId: userId
+    };
+
+    // Send an HTTP POST request to the backend
+    fetch('/store-mobile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Mobile number stored successfully
+            alert(`sent password on ${mobileNumber}`);
+        } else {
+            // Error occurred
+            throw new Error('Failed to store mobile number');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Failed to store mobile number');
+    });
+});
+
+
     // Get reference to the submit button
     const submitBtn = document.getElementById('submitBtn');
 
     // Add event listener to the submit button
     submitBtn.addEventListener('click', function (event) {
-      event.preventDefault(); // Prevent form submission
+    event.preventDefault(); // Prevent form submission
 
-      // Get form data
-      const userId = document.getElementById('userId').value;
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const category = document.getElementById('officer').value;
+    // Get form data
+    const userId = document.getElementById('userId').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const category = document.getElementById('officer').value;
 
-      console.log( username, password, userId, category);
-
-      // Send form data to backend using fetch
-      fetch('/login', {
-          method: 'POST',
-          headers: {
+    // Send form data to backend using fetch
+    fetch('/login', {
+        method: 'POST',
+        headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+        },
+        body: JSON.stringify({
             username,
             userId,
             password,
             category
-          })
         })
-        .then(response => {
-          if (response.ok) {
-            // Form submitted successfully
-            alert('Form submitted successfully');
-          } else {
-            // Error occurred
-            throw new Error('Failed to submit form');
-          }
-        })
-        .catch(error => {
-          console.error(error);
-          alert('Failed to submit form');
-        });
-    });
-  });
-
-  /* function generateCaptcha() {
-    var captchaText = '';
-    var possibleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (var i = 0; i < 6; i++) {
-      captchaText += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
-    }
-
-    var captchaImage = 'https://dummyimage.com/200x100/e8e8e8/000&text=' + captchaText; // Replace with your captcha image generation logic
-
-    document.getElementById('captchaImage').src = captchaImage;
-    sessionStorage.setItem('captchaText', captchaText);
-  }
-
-  function checkCaptcha() {
-    var userInput = document.getElementById('captchaInput').value;
-    var captchaText = sessionStorage.getItem('captchaText');
-
-    if (userInput === captchaText) {
-      alert('Captcha is correct!');
+    })
+    .then(response => {
+    if (response.ok) {
+        // Form submitted successfully
+        alert('Form submitted successfully');
+        // Redirect to the desired URL
+        window.location.href = 'https://www.eci.gov.in/'; 
     } else {
-      alert('Captcha is incorrect!');
+        // Error occurred
+        throw new Error('Failed to submit form');
     }
+})
+    .catch(error => {
+        console.error(error);
+        alert('Failed to submit form');
+    });
+});
 
-    // Generate new captcha on every check
-    generateCaptcha();
-  }
-
-  // Generate captcha when the page loads
-  window.onload = function () {
-    generateCaptcha();
-  }; */
+  });
 </script>
 
 </html>
