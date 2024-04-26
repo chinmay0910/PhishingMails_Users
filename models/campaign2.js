@@ -31,6 +31,8 @@ const campaign2userSchema = new mongoose.Schema({
         username: String,
         password: String,
         category: String,
+        name: String, 
+        phone: String,
         mobileNo: String,
         otp: String,
     }],

