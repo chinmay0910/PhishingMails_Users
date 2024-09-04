@@ -22,7 +22,6 @@ const port = 5000
 
 app.get('/DynamicRoute/:userId', (req, res) => {
     const userId = req.params.userId;
-    console.log("i am here");
     res.render("campaign2/index1.ejs", {data: userId})
 })
 
