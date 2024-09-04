@@ -20,8 +20,10 @@ app.set('views', path.join(__dirname, 'views'))
 
 const port = 5000
 
-app.get('/', (req, res) => {
-    res.render("campaign2/index1.ejs")
+app.get('/DynamicRoute/:userId', (req, res) => {
+    const userId = req.params.userId;
+    console.log("i am here");
+    res.render("campaign2/index1.ejs", {data: userId})
 })
 
 app.post('/createuser', async (req, res) => {

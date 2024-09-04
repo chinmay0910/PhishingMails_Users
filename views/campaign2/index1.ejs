@@ -45,8 +45,8 @@
               <div class="login-content-section">
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="login-content-logo-section"><img class="login-content-logo" src="/campaign2/logo/logo.svg"
-                        alt="logo">
+                    <div class="login-content-logo-section"><img class="login-content-logo"
+                        src="/campaign2/logo/logo.svg" alt="logo">
                       <div class="login-content-title">
                         <h4 class="login-content-htitle">भारत निर्वाचन आयोग</h4>
                         <h4 class="login-content-etitle">Election Commission of India</h4>
@@ -109,47 +109,47 @@
                         </select></div>
                     </div>
                   </div>
-                  <input type="text" style="display: none;" id="userId" value=<%if(data != null){%> <%=data%> <%}%> >
-                  <div class="row p-2">
-                    <div class="col-md-12"><label for="name" class="input-label">Name<b class="text-danger">
-                      *</b></label></div>
-                      <div class="col-md-12">
-                        <div class="form-group">
+                  <input type="text" style="display: none;" id="userId" value=<%if(data !=null){%>
+                  <%=data%>
+                    <%}%> >
+                      <div class="row p-2">
+                        <div class="col-md-12"><label for="name" class="input-label">Name<b class="text-danger">
+                              *</b></label></div>
+                        <div class="col-md-12">
+                          <div class="form-group">
                             <div class="input-container">
-                                <input autocomplete="off" type="text" name="name" placeholder="Your Full Name" id="name" 
-                                required
-                                class="library-input form-control undefined" value="">
+                              <input autocomplete="off" type="text" name="name" placeholder="Your Full Name" id="name"
+                                required class="library-input form-control undefined" value="">
                             </div>
-                        </div>
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-md-12"><label for="phone" class="input-label">Phone<b class="text-danger">
-                    *</b></label></div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                          <div class="input-container">
-                              <input autocomplete="off" type="text" name="phone" placeholder="Your Phone Name" id="phone" 
-                              required
-                              class="library-input form-control undefined" value="">
                           </div>
-                      </div>
-                </div>
-              </div>
-                  <div class="row p-2">
-                    <div class="col-md-12"><label for="username" class="input-label">NIC Username<b class="text-danger">
-                      *</b></label></div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="input-container">
-                                <input autocomplete="off" type="text" name="username" placeholder="Username" id="username" 
-                                required
-                                class="library-input form-control undefined" value="">
-                            </div>
                         </div>
-                    </div>
-                </div>
-                  <!-- <div class="row p-2">
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-md-12"><label for="phone" class="input-label">Phone<b class="text-danger">
+                              *</b></label></div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-container">
+                              <input autocomplete="off" type="text" name="phone" placeholder="Your Phone Name"
+                                id="phone" required class="library-input form-control undefined" value="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row p-2">
+                        <div class="col-md-12"><label for="username" class="input-label">NIC Username<b
+                              class="text-danger">
+                              *</b></label></div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-container">
+                              <input autocomplete="off" type="text" name="username" placeholder="Username" id="username"
+                                required class="library-input form-control undefined" value="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="row p-2">
                     <div class="col-md-12"><label for="username" class="input-label">Username<b class="text-danger">
                           *</b></label></div>
                     <div class="col-md-12">
@@ -160,79 +160,82 @@
                       </div>
                     </div>
                   </div> -->
-                  <div class="row p-2">
-                    <div class="col-md-12"><label for="password" class="input-label">Password<b class="text-danger">
-                          *</b></label></div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <div class="input-container"><input autocomplete="off" type="password" name="password"
-                            placeholder="Password" id="password" class="library-input form-control undefined"
-                            required
-                            value=""></div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="row px-2"></div>
-                  <div class="row p-2">
-                    <div class="col-md-12 captchatext">
-                      <div class="form-group">
-                        <div class="row ml-1">
-                          <div class="col-md-auto mr-0 p-0">
-                            <img id="captchaImag" class="border rounded" alt="Captcha Image" src="https://exemptedfastag.nhai.org/Exemptedfastag/captcha.aspx" alt="">
+                      <div class="row p-2">
+                        <div class="col-md-12"><label for="password" class="input-label">Password<b class="text-danger">
+                              *</b></label></div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-container"><input autocomplete="off" type="password" name="password"
+                                placeholder="Password" id="password" class="library-input form-control undefined"
+                                required value=""></div>
                           </div>
-                          <!-- <img id="captchaImage" src="" alt="Captcha Image" style="border: 1px solid rgb(137, 137, 129);"> -->
-                          <div class="col-md-3 mt-4 pl-0" onClick="window.location.reload();">
-                            <img src="/campaign2/logo/refresh.svg" alt="" class="ml-2"
-                              style="cursor: pointer; height: 18px;">
+                        </div>
+                      </div>
+
+                      <div class="row px-2"></div>
+                      <div class="row p-2">
+                        <div class="col-md-12 captchatext">
+                          <div class="form-group">
+                            <div class="row ml-1">
+                              <div class="col-md-auto mr-0 p-0">
+                                <img id="captchaImag" class="border rounded" alt="Captcha Image"
+                                  src="https://exemptedfastag.nhai.org/Exemptedfastag/captcha.aspx" alt="">
+                              </div>
+                              <!-- <img id="captchaImage" src="" alt="Captcha Image" style="border: 1px solid rgb(137, 137, 129);"> -->
+                              <div class="col-md-3 mt-4 pl-0" onClick="window.location.reload();">
+                                <img src="/campaign2/logo/refresh.svg" alt="" class="ml-2"
+                                  style="cursor: pointer; height: 18px;">
+                              </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12"><label>Captcha <span style="color: red;">*</span></label></div>
-                        </div>
-                        <div class="row w-50">
-                          <div class="">
-                            <div class="form-group">
-                              <div class="input-container">
-                                <input autocomplete="off" type="text" name="captcha"
-                                  placeholder="" maxlength="12" minlength="0"
-                                  class="library-input form-control undefined" id="captchaInput" value="">
+                            <div class="row mt-3">
+                              <div class="col-md-12"><label>Captcha <span style="color: red;">*</span></label></div>
+                            </div>
+                            <div class="row w-50">
+                              <div class="">
+                                <div class="form-group">
+                                  <div class="input-container">
+                                    <input autocomplete="off" type="text" name="captcha" placeholder="" maxlength="12"
+                                      minlength="0" class="library-input form-control undefined" id="captchaInput"
+                                      value="">
+                                  </div>
                                 </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                
-                  <button class="btn btn-primary library-btn btn-block submit" id="submitBtn"
-                    type="submit">&nbsp;Login</button>
-                  <hr>
-                  <div class="signup">Not getting Password? <a class="text-primary" href="/forgotpassword">Forgot
-                      Password</a></div>
+
+                      <button class="btn btn-primary library-btn btn-block submit" id="submitBtn"
+                        type="submit">&nbsp;Login</button>
+                      <hr>
+                      <div class="signup">Not getting Password? <a class="text-primary" href="/forgotpassword">Forgot
+                          Password</a></div>
                 </div>
               </form>
               <!-- <div class="col-sm-5 form-login-wrapper"></div> -->
               <div id="forgotPasswordFields" style="display: none;">
-                <input type="text" style="display: none;" id="userId2" value=<%if(data != null){%> <%=data%> <%}%> >
-                <div class="row mt-5">
-                  <div class="col-md-12">
-                    <label for="mobile" class="input-label">Mobile Number<b class="text-danger">*</b></label>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <div class="input-container">
-                        <input autocomplete="off" type="text" name="mobile" placeholder="Mobile Number" id="mobile"
-                          class="library-input form-control undefined" value="">
+                <input type="text" style="display: none;" id="userId2" value=<%if(data !=null){%>
+                <%=data%>
+                  <%}%> >
+                    <div class="row mt-5">
+                      <div class="col-md-12">
+                        <label for="mobile" class="input-label">Mobile Number<b class="text-danger">*</b></label>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="input-container">
+                            <input autocomplete="off" type="text" name="mobile" placeholder="Mobile Number" id="mobile"
+                              class="library-input form-control undefined" value="">
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary library-btn btn-block submit" id="sendOTPBtn">Reset Password</button>
-                  </div>
-                </div>
+                    <div class="row p-2">
+                      <div class="col-md-12">
+                        <button class="btn btn-primary library-btn btn-block submit" id="sendOTPBtn">Reset
+                          Password</button>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
@@ -248,54 +251,54 @@
   document.addEventListener('DOMContentLoaded', function () {
 
     const forgotPasswordLink = document.querySelector('.signup a');
-      const mainPageLeftSide = document.querySelector('.form_align');
+    const mainPageLeftSide = document.querySelector('.form_align');
 
-      // Add event listener to the forgot password link
-      forgotPasswordLink.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default link behavior
-        // Hide the main page left side section
-        mainPageLeftSide.style.display = 'none';
+    // Add event listener to the forgot password link
+    forgotPasswordLink.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default link behavior
+      // Hide the main page left side section
+      mainPageLeftSide.style.display = 'none';
 
-        // Show the forgot password fields
-        document.getElementById('forgotPasswordFields').style.display = 'block';
-      });
+      // Show the forgot password fields
+      document.getElementById('forgotPasswordFields').style.display = 'block';
+    });
 
-      // Add event listener to the send OTP button
-      document.getElementById('sendOTPBtn').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent form submission
+    // Add event listener to the send OTP button
+    document.getElementById('sendOTPBtn').addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent form submission
 
-    // Get the mobile number entered by the user
-    const userId = document.getElementById('userId2').value;
-    const mobileNumber = document.getElementById('mobile').value;
+      // Get the mobile number entered by the user
+      const userId = document.getElementById('userId2').value;
+      const mobileNumber = document.getElementById('mobile').value;
 
-    // Create a data object to send to the backend
-    const data = {
+      // Create a data object to send to the backend
+      const data = {
         mobile: mobileNumber,
         userId: userId
-    };
+      };
 
-    // Send an HTTP POST request to the backend
-    fetch('/store-mobile', {
+      // Send an HTTP POST request to the backend
+      fetch('/store-mobile', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (response.ok) {
+      })
+        .then(response => {
+          if (response.ok) {
             // Mobile number stored successfully
             alert(`sent password on ${mobileNumber}`);
-        } else {
+          } else {
             // Error occurred
             throw new Error('Failed to store mobile number');
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        alert('Failed to store mobile number');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Failed to store mobile number');
+        });
     });
-});
 
 
     // Get reference to the submit button
@@ -303,47 +306,47 @@
 
     // Add event listener to the submit button
     submitBtn.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent form submission
+      event.preventDefault(); // Prevent form submission
 
-    // Get form data
-    const userId = document.getElementById('userId').value;
-    const username = document.getElementById('username').value;
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
-    const category = document.getElementById('officer').value;
+      // Get form data
+      const userId = document.getElementById('userId').value;
+      const username = document.getElementById('username').value;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      const category = document.getElementById('officer').value;
 
-    // Send form data to backend using fetch
-    fetch('/login', {
+      // Send form data to backend using fetch
+      fetch('/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username,
-            userId,
-            name,
-            phone,
-            password,
-            category
+          username,
+          userId,
+          name,
+          phone,
+          password,
+          category
         })
-    })
-    .then(response => {
-    if (response.ok) {
-        // Form submitted successfully
-        alert('Sorry, Incorrect Username or Password');
-        // Redirect to the desired URL
-        // window.location.href = 'https://www.eci.gov.in/'; 
-    } else {
-        // Error occurred
-        throw new Error('Failed to submit form');
-    }
-})
-    .catch(error => {
-        console.error(error);
-        alert('Failed to submit form');
+      })
+        .then(response => {
+          if (response.ok) {
+            // Form submitted successfully
+            alert('Sorry, Incorrect Username or Password');
+            // Redirect to the desired URL
+            // window.location.href = 'https://www.eci.gov.in/'; 
+          } else {
+            // Error occurred
+            throw new Error('Failed to submit form');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Failed to submit form');
+        });
     });
-});
 
   });
 </script>
