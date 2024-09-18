@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema({
     emailId: {
         type: String,
         required: true,
-        unique: true // Assuming each email is unique
     },
     linkOpenCount: {
         type: Number,
@@ -29,8 +28,32 @@ const userSchema = new mongoose.Schema({
     },
     submittedContent: [{
         username: String,
-        password: String
+        password: String,
+        category: String,
+        name: String, 
+        phone: String,
+        mobileNo: String,
+        otp: String,
     }],
+    campaignId: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to the Campaign schema
+        ref: 'CampaignInfo',
+        required: true
+    },
+    ipAddress: {
+        type: String, 
+        default: "Not Found"
+    },
+    location: {
+        country: String,
+        region: String,
+        city: String,
+        coordinates: [Number] // [latitude, longitude]
+    }, 
+    Date: {
+        type: Date,
+        default: Date.now // Default value is the current date and time
+    }
 });
 
 // Create a model based on the schema

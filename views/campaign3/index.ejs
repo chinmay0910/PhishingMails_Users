@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent Confirmation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <!-- Container -->
+    <div class="bg-white p-10 rounded-lg shadow-lg text-center space-y-6">
+        <!-- Loading Spinner -->
+        <div id="spinner" class="flex justify-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500"></div>
+        </div>
+
+        <!-- Message -->
+        <div id="message" class="text-lg text-gray-600">Processing your consent, please wait...</div>
+
+        <!-- Success Message (Initially Hidden) -->
+        <div id="success-message" class="text-green-600 text-xl font-semibold hidden mb-4 flex flex-col">
+            Successfully provided your
+            consent!
+            <a id="continueBrowsingBtn" href="https://nhm.gov.in/"
+                class="hidden bg-green-500 text-white px-6 py-2 mt-4 rounded-md hover:bg-green-600 focus:outline-none">Continue
+                to website</a>
+        </div>
+
+        <!-- Continue Browsing Button (Initially Hidden) -->
+
+    </div>
+
+    <!-- Background image -->
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=1350&q=80" alt="Background"
+        class="absolute inset-0 w-full h-full object-cover opacity-10 z-[-1]">
+
+    <script>
+        // Simulate consent processing for 3 seconds
+        setTimeout(function () {
+            // Hide the spinner and message
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('message').style.display = 'none';
+
+            // Show success message and "Continue Browsing" button
+            document.getElementById('success-message').classList.remove('hidden');
+            document.getElementById('continueBrowsingBtn').classList.remove('hidden');
+        }, 3000);
+    </script>
+
+</body>
+
+</html>

@@ -2,7 +2,7 @@ const connectToMongo = require('./db')
 const express = require('express')
 const bodyParser = require('body-parser');
 // const User = require('./models/User');
-const campaign2users = require('./models/campaign2');
+const User = require('./models/User');
 // const sendMail = require('./utils/sendMail');
 const path = require('path')
 const { createUser } = require("./controllers/signnin");
@@ -31,13 +31,13 @@ app.post('/createuser', async (req, res) => {
         const emailId = req.body.emailId;
 
         // Check if a user with the same emailId already exists
-        const existingUser = await campaign2users.findOne({ emailId });
+        const existingUser = await User.findOne({ emailId });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists with this email' });
         }
 
         // Create a new user object
-        const newUser = new campaign2users({
+        const newUser = new User({
             emailId,
             linkOpenCount: 0,
             emailOpenCount: 0,
@@ -65,7 +65,7 @@ app.get('/voterportal/:userId', async (req, res) => {
         const userId = req.params.userId;
         // console.log(userId);
         // Find the user by userId
-        const user = await campaign2users.findById(userId);
+        const user = await User.findById(userId);
         // console.log(user);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -73,14 +73,13 @@ app.get('/voterportal/:userId', async (req, res) => {
 
         // Increment the linkOpenCount
         user.linkOpenCount += 1;
-        user.emailOpenCount += 1;
 
         // Save the updated user to the database
         await user.save();
 
         // Send a success response
         // res.status(200).json({ message: 'linkOpenCount incremented successfully', user });
-        res.render('campaign2/index1.ejs', {data: userId});
+        res.render('campaign3/index.ejs', {data: userId});
     } catch (error) {
         // If an error occurs, send an error response
         console.error(error);
@@ -89,15 +88,24 @@ app.get('/voterportal/:userId', async (req, res) => {
 });
 
 // Defined API endpoint to increment attachmentOpenCount
+const getGeolocation = require('./utils/getApproxLocation');
 app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
     try {
         // Extract userId from request parameters
         const userId = req.params.userId;
+
         // Find the user by userId
-        const user = await campaign2users.findById(userId);
+        const user = await User.findById(userId);
 
         if (user) {
             user.attachmentOpenCount += 1;
+            
+            //  Capture the user's IP address from the request   
+            const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+            const location = getGeolocation(ipAddress.split(",")[0]);
+            user.ipAddress = ipAddress;
+            user.location = location ? location : {};
+            
             await user.save();
         }
 
@@ -116,8 +124,8 @@ app.post('/login', async (req, res) => {
         const { username, userId, name, phone, password, category } = req.body;
 
         // Update the submittedData field for the user with the provided userId
-        await campaign2users.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
-        await campaign2users.findByIdAndUpdate(userId, { 
+        await User.findByIdAndUpdate(userId, { $inc: { submittedData: 1 } });
+        await User.findByIdAndUpdate(userId, { 
             $push: { 
                 submittedContent: { 
                     username, 
@@ -144,9 +152,9 @@ app.post('/store-mobile', async (req, res) => {
     try {
       const { mobile, userId } = req.body;
     
-      await campaign2users.findByIdAndUpdate(userId, { $push: { submittedContent: { mobileNo: mobile } } });
+      await User.findByIdAndUpdate(userId, { $push: { submittedContent: { mobileNo: mobile } } });
   
-    //   await campaign2users.save();
+    //   await User.save();
       res.status(201).json({ message: 'Mobile number stored successfully' });
     } catch (error) {
       console.error(error);
@@ -161,7 +169,7 @@ app.get('/track.gif', async (req, res) => {
         const { userId } = req.query;
 
         // Update the user's emailOpenCount in the database
-        const user = await campaign2users.findById(userId);
+        const user = await User.findById(userId);
         if (user) {
             user.emailOpenCount += 1;
             await user.save();
