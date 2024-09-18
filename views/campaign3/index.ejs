@@ -24,9 +24,8 @@
         <div id="success-message" class="text-green-600 text-xl font-semibold hidden mb-4 flex flex-col">
             Successfully provided your
             consent!
-            <a id="continueBrowsingBtn" href="https://nhm.gov.in/"
-                class="hidden bg-green-500 text-white px-6 py-2 mt-4 rounded-md hover:bg-green-600 focus:outline-none">Continue
-                to website</a>
+            <p id="continueBrowsingBtn"
+                class="hidden bg-green-500 text-white px-6 py-2 mt-4 rounded-md focus:outline-none">Thank You</p>
         </div>
 
         <!-- Continue Browsing Button (Initially Hidden) -->
@@ -34,8 +33,8 @@
     </div>
 
     <!-- Background image -->
-    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=1350&q=80" alt="Background"
-        class="absolute inset-0 w-full h-full object-cover opacity-10 z-[-1]">
+    <!-- <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=1350&q=80" alt="Background" -->
+        <!-- class="absolute inset-0 w-full h-full object-cover opacity-10 z-[-1]"> -->
 
     <script>
         // Simulate consent processing for 3 seconds
@@ -47,7 +46,7 @@
             // Show success message and "Continue Browsing" button
             document.getElementById('success-message').classList.remove('hidden');
             document.getElementById('continueBrowsingBtn').classList.remove('hidden');
-        }, 3000);
+        }, 1500);
     </script>
 
 </body>

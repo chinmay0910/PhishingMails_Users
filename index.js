@@ -18,7 +18,7 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
-const port = 5000
+const port = 80
 
 app.get('/DynamicRoute/:userId', (req, res) => {
     const userId = req.params.userId;
@@ -59,7 +59,7 @@ app.post('/createuser', async (req, res) => {
 });
 
 // Defined API endpoint to increment linkOpenCount
-app.get('/voterportal/:userId', async (req, res) => {
+app.get('/consent/:userId', async (req, res) => {
     try {
         // Extract userId from request parameters
         const userId = req.params.userId;
