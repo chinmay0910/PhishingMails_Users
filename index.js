@@ -105,7 +105,7 @@ app.get('/incrementAttachmentOpenCount/:userId', async (req, res) => {
             const location = getGeolocation(ipAddress.split(",")[0]);
             user.ipAddress = ipAddress;
             user.location = location ? location : {};
-            
+            user.Date = Date.now();
             await user.save();
         }
 
